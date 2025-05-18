@@ -22,6 +22,12 @@ void checkStep(const double step);
  *@brief - Точка входа в программу
  *@return - возвращает 0, если программа выполнена корректно
  */
+bool isDomain(const double x);
+/**
+*@brief - точка входа в программу
+*@param - возвращает 0, если программа выполнена корректно
+*/
+
 int main() {
     // russification
     setlocale(LC_ALL, "RU");
@@ -41,7 +47,18 @@ int main() {
     cout << "x\t\ty(x)" << endl;
     cout << "---------------------" << endl;
     for (double x = xstart; x <= xend + numeric_limits<double>::epsilon(); x += step) {
-        cout << x << "\t\t" << getY(x) << endl;
+        if (!isDomain(x))
+        {
+            cout << x << "\t\t" << getY
+            (x) << endl;
+        }
+        else
+        {
+
+            cout << x << "\t\t" <<
+                "Неопределенность: cos(x) не существует"
+                << endl;
+        }
     }
     return 0;
 }
@@ -65,6 +82,11 @@ void checkStep(const double step)
         abort();
     }
 }
+bool isDomain(const double x)
+{
+    return (fabs(cos(x) < numeric_limits<double>::epsilon()));
+}
+
 double getY(const double x) {
     return  cos(2.0 / x) - 2.0 * sin(1.0 / x) + 1.0 / x;
 }
