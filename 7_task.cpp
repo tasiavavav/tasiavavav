@@ -1,3 +1,139 @@
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+
+using namespace std;
+
+/**
+ * @brief Cчитывает целое число с клавиатуры с проверкой ввода
+ * @return Cчитанное значение
+ */
+int getValue();
+
+/**
+ * @brief Cчитывает размер массива с проверкой ввода
+ * @return Cчитанный размер
+ */
+size_t getSize();
+
+/**
+ * @brief Проверяет, что введенное значение удовлетворяет условию n > 0
+ * @param n Cчитанное значение
+ */
+void checkN(const int n);
+
+/**
+ * @brief Создает двумерный массив заданного размера
+ * @param rows Количество строк
+ * @param cols Количество столбцов
+ * @return Указатель на созданный массив
+ */
+int** createArray(const size_t rows, const size_t cols);
+
+/**
+ * @brief Выводит массив на экран
+ * @param array Массив для вывода
+ * @param rows Количество строк
+ * @param cols Количество столбцов
+ */
+void printArray(int** array, const size_t rows, const size_t cols);
+
+/**
+ * @brief Заполняет массив вручную с клавиатуры
+ * @param array Массив для заполнения
+ * @param rows Количество строк
+ * @param cols Количество столбцов
+ */
+void fillArray(int** array, const size_t rows, const size_t cols);
+
+/**
+ * @brief Находит индекс максимального элемента в строке
+ * @param row Указатель на строку массива
+ * @param n Количество элементов в строке
+ * @return Индекс максимального элемента
+ */
+size_t getMaxIndexInRow(int* row, const size_t n);
+
+/**
+ * @brief Инвертирует знак максимального элемента в каждой строке
+ * @param array Массив для обработки
+ * @param rows Количество строк
+ * @param cols Количество столбцов
+ */
+void invertMaxInRows(int** array, const size_t rows, const size_t cols);
+
+/**
+ * @brief Находит максимальный элемент во всем массиве
+ * @param array Массив для поиска
+ * @param rows Количество строк
+ * @param cols Количество столбцов
+ * @return Максимальный элемент
+ */
+int findMaxElement(int** array, const size_t rows, const size_t cols);
+
+/**
+ * @brief Проверяет наличие максимального элемента в указанном столбце
+ * @param array Массив для проверки
+ * @param rows Количество строк
+ * @param col Индекс столбца для проверки
+ * @param maxElement Искомый максимальный элемент
+ * @return true если элемент найден, иначе false
+ */
+bool hasMaxElement(int** array, const size_t rows, size_t col, int maxElement);
+
+/**
+ * @brief Подсчитывает количество столбцов, содержащих максимальный элемент
+ * @param array Массив для проверки
+ * @param rows Количество строк
+ * @param cols Количество столбцов
+ * @return Количество столбцов с максимальным элементом
+ */
+size_t getNumberColumns(int** array, const size_t rows, const size_t cols);
+
+/**
+ * @brief Вставляет столбцы с нулями после столбцов, содержащих максимальный элемент
+ * @param newArray Новый массив для заполнения
+ * @param rows Количество строк
+ * @param newCols Количество столбцов в новом массиве
+ * @param cols Количество столбцов в исходном массиве
+ * @param originalArray Исходный массив
+ */
+void insertZeroColumns(int newArray, const size_t rows, const size_t newCols, const size_t cols, int originalArray);
+
+/**
+ * @brief Освобождает память, занятую массивом
+ * @param array Массив для удаления
+ * @param rows Количество строк
+ * @param cols Количество столбцов
+ */
+void deleteArray(int** array, const size_t rows, const size_t cols);
+
+/**
+ * @brief Создает копию массива
+ * @param array Массив для копирования
+ * @param rows Количество строк
+ * @param cols Количество столбцов
+ * @return Указатель на копию массива
+ */
+int copyArray(int array, const size_t rows, const size_t cols);
+
+int main()
+{
+    cout << "Введите количество строк (m): ";
+    size_t m = getSize();
+    cout << "Введите количество столбцов (n): ";
+    size_t n = getSize();
+
+    int** originalArray = createArray(m, n);
+
+    // Заполняем массив вручную
+    fillArray(originalArray, m, n);
+
+    // Создаем копию исходного массива
+    int** workingArray = copyArray(originalArray, m, n);
+
+    cout << "Исходный массив:" << endl;
+    printArray(originalArray, m, n);
 // Задание 1: Инвертировать максимальные элементы в строках
     invertMaxInRows(workingArray, m, n);
     cout << "После инверсии максимальных элементов в строках:" << endl;
