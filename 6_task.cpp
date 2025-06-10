@@ -21,7 +21,6 @@ enum SELECT
  * @param n - размер массива
  */
 void checkN(const int n);
-
 /**
  * @brief считывает размер массива
  * @return размер массива в беззнаковом типе данных
