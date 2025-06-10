@@ -98,7 +98,7 @@ size_t getNumberColumns(int** array, const size_t rows, const size_t cols);
  * @param cols Количество столбцов в исходном массиве
  * @param originalArray Исходный массив
  */
-void insertZeroColumns(int newArray, const size_t rows, const size_t newCols, const size_t cols, int originalArray);
+void insertZeroColumns(int** newArray, const size_t rows, const size_t newCols, const size_t cols, int** originalArray);
 
 /**
  * @brief Освобождает память, занятую массивом
@@ -115,7 +115,7 @@ void deleteArray(int** array, const size_t rows, const size_t cols);
  * @param cols Количество столбцов
  * @return Указатель на копию массива
  */
-int copyArray(int array, const size_t rows, const size_t cols);
+int** copyArray(int** array, const size_t rows, const size_t cols);
 
 int main()
 {
@@ -134,7 +134,8 @@ int main()
 
     cout << "Исходный массив:" << endl;
     printArray(originalArray, m, n);
-// Задание 1: Инвертировать максимальные элементы в строках
+    
+    // Задание 1: Инвертировать максимальные элементы в строках
     invertMaxInRows(workingArray, m, n);
     cout << "После инверсии максимальных элементов в строках:" << endl;
     printArray(workingArray, m, n);
@@ -263,7 +264,7 @@ size_t getNumberColumns(int** array, const size_t rows, const size_t cols)
     return count;
 }
 
-void insertZeroColumns(int newArray, const size_t rows, const size_t newCols, const size_t cols, int originalArray)
+void insertZeroColumns(int** newArray, const size_t rows, const size_t newCols, const size_t cols, int** originalArray)
 {
     int maxElement = findMaxElement(originalArray, rows, cols);
     size_t newCol = 0;
@@ -292,7 +293,8 @@ void deleteArray(int** array, const size_t rows, const size_t cols)
     }
     delete[] array;
 }
-int copyArray(int array, const size_t rows, const size_t cols)
+
+int** copyArray(int** array, const size_t rows, const size_t cols)
 {
     int** newArray = createArray(rows, cols);
     for(size_t i = 0; i < rows; i++) {
