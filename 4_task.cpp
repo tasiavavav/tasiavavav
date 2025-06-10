@@ -9,7 +9,6 @@ using namespace std;
  * @return Возвращает значение, если оно правильное, иначе завершает программу
  */
 double getValue();
-
 /**
  * @brief Функция для вычисления значения функции y = cos(2/x) - 2*sin(1/x) + 1/x
  * @return cos(2/x) - 2*sin(1/x) + 1/x
