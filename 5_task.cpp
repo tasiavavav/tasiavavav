@@ -28,6 +28,7 @@ void checkN(const int n);
  * @return сумму n первых членов ряда
  */
 double calculateFirstNSeriesSum(const int n);
+
 /**
  * @brief проверяет, что введенное значение удовлетворяет условию e>0
  * @param e считанное значение
@@ -40,6 +41,7 @@ void checkE(const double e);
  * @return сумму членов ряда, не меньших по модулю e
  */
 double calculateSeriesSumAboveEpsilon(const double e);
+
 /**
 * @brief точка входа в программу
 * @return 0
@@ -52,13 +54,13 @@ int main()
     int n = getValue();
     checkN(n);
     cout << "Сумма " << n << " членов ряда равна "
-        << fixed << setprecision(2) << calculateFirstNSeriesSum(n) << endl;
+         << fixed << setprecision(5) << calculateFirstNSeriesSum(n) << endl;
 
     cout << "Введите погрешность для рассчета последовательности: ";
     double e = getDouble();
     checkE(e);
     cout << "Сумма членов ряда с точностью e равна "
-        << fixed << setprecision(2) << calculateSeriesSumAboveEpsilon(e) << endl;
+         << fixed << setprecision(5) << calculateSeriesSumAboveEpsilon(e) << endl;
 
     return 0;
 }
@@ -108,9 +110,9 @@ void checkE(const double e)
 double calculateFirstNSeriesSum(const int n)
 {
     double sum = 0.0;
-    double term = -1.0; 
+    double term = -1.0; // Первый член ряда при k=1: (-1)^1 * 1^3 / 1^4 = -1
 
-    for (int k = 1; k < n; ++k) 
+    for (int k = 1; k <= n; ++k) 
     {
         sum += term;
         term = term * (-1.0) * pow(k + 1, 3) / pow(k, 4);
@@ -123,14 +125,14 @@ double calculateSeriesSumAboveEpsilon(const double epsilon)
 {
     double sum = 0.0;
     int k = 1;
-    double term = -1.0; 
+    double term = -1.0; // Первый член ряда при k=1: (-1)^1 * 1^3 / 1^4 = -1
 
-    while (fabs(term) >= epsilon) {
+    while (fabs(term) >= epsilon) 
+    {
         sum += term;
-        term = term * (-1.0) * pow(k + 1, 3) / pow(k, 4);
         k++;
+        term = term * (-1.0) * pow(k, 3) / pow(k - 1, 4);
     }
 
     return sum;
 }
-
