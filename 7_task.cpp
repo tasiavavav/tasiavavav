@@ -52,7 +52,7 @@ void fillArray(int** array, const size_t rows, const size_t cols);
  * @param n Количество элементов в строке
  * @return Индекс максимального элемента
  */
-size_t getMaxIndexInRow(const int* row, const size_t n);
+size_t getMaxIndexInRow(const int** row, const size_t n);
 
 /**
  * @brief Инвертирует знак максимального элемента в каждой строке
@@ -79,7 +79,7 @@ int findMaxElement(int** array, const size_t rows, const size_t cols);
  * @param maxElement Искомый максимальный элемент
  * @return true если элемент найден, иначе false
  */
-bool hasMaxElement(int** array, const size_t rows, size_t col, int maxElement);
+bool hasMaxElement(int** array, const size_t rows, const size_t col, const int maxElement);
 
 /**
  * @brief Подсчитывает количество столбцов, содержащих максимальный элемент
